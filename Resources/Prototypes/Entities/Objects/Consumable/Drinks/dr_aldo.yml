@@ -1,5 +1,5 @@
 - type: entity
-  parent: DrinkCanBase
+  parent: DrinkCanBaseFull
   id: DrinkCanDrAldo
   name: Dr. Aldo
   description: A fizzy brown soda with a suspiciously familiar taste. The can looks cheaply made.
