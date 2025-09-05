@@ -848,3 +848,36 @@
   - type: Tag
     tags:
     - Wine
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: DrinkDrAldoCan
+  name: Dr. Aldo
+  description: "A suspiciously sweet soda. The label says it's made by ALDOCORP. Also notes: 'Dr. Aldo is not a licensed doctor.' Warning: May not be safe to consume due to extremely high sugar and caffeine levels."
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Cola
+          Quantity: 15
+        - ReagentId: Sugar
+          Quantity: 10
+        - ReagentId: Coffee
+          Quantity: 5
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/cola.rsi
+  - type: Item
+    sprite: Objects/Consumable/Drinks/cola.rsi
+  - type: Tag
+    tags:
+    - Cola
+    - DrinkCan
+    - Recyclable
