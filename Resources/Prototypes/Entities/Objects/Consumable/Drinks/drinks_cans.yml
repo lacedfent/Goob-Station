@@ -853,7 +853,8 @@
   parent: DrinkCanBaseFull
   id: DrinkDrAldoCan
   name: Dr. Aldo
-  description: "A sweet soda with a label claiming it's made by ALDOCORP. States that Dr. Aldo isn't a real doctor and advises consulting a physician before drinking if you have heart problems.
+  description: "A sweet soda with a label claiming it's made by ALDOCORP. States that Dr. Aldo isn't a real doctor and advises consulting a physician before drinking if you have heart problems."
+  components:
   - type: SolutionContainerManager
     solutions:
       drink:
