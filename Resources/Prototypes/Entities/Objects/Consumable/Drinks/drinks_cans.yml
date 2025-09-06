@@ -853,8 +853,7 @@
   parent: DrinkCanBaseFull
   id: DrinkDrAldoCan
   name: Dr. Aldo
-  description: "A suspiciously sweet soda. The label says it's made by ALDOCORP. Also notes: 'Dr. Aldo is not a licensed doctor.' Warning: May not be safe to consume due to extremely high sugar and caffeine levels."
-  components:
+  description: "A sweet soda with a label claiming it's made by ALDOCORP. States that Dr. Aldo isn't a real doctor and advises consulting a physician before drinking if you have heart problems.
   - type: SolutionContainerManager
     solutions:
       drink:
