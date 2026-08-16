@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: antag
+  id: Spy
+  name: roles-antag-spy-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-spy-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 2h
