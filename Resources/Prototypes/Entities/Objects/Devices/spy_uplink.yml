@@ -14,7 +14,7 @@
   - type: ActivatableUI
     key: enum.SpyUplinkUiKey.Key
     inHandsOnly: true
-    requireActiveHand: true
+    requireActiveHand: false
   - type: UserInterface
     interfaces:
       enum.SpyUplinkUiKey.Key:
