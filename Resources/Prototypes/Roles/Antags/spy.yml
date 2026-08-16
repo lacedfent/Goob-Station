@@ -9,3 +9,8 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 2h
+
+- type: startingGear
+  id: SpyGear
+  equipment:
+    pocket1: SpyUplink

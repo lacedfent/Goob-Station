@@ -47,6 +47,17 @@
   id: Spy
   components:
   - type: SpyRule
+    lootPool:
+    - Telecrystal10
+    - Telecrystal5
+    - PowerCellHyper
+    - SpaceCash5000
+    - SpaceCash10000
+    - CombatKnife
+    - Emag
+    - StealthBox
+    - ChameleonProjector
+    - JetpackMiniFilled
   - type: AntagObjectives
     objectives:
     - SpyEscapeShuttleMission
@@ -67,6 +78,7 @@
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: NotExclusive
+      startingGear: SpyGear
       jobBlacklist: [ Chaplain ] # GOOBSTATION
       blacklist: # GOOBSTATION
         components:

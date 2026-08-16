@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseItem
+  id: SpyUplink
+  name: spy uplink
+  description: A sleek little device that keeps track of your outstanding bounties. The sender of these messages values their anonymity, so try not to let anyone else see it.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/spy_device.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: ActivatableUI
+    key: enum.SpyUplinkUiKey.Key
+    inHandsOnly: true
+    requireActiveHand: true
+  - type: UserInterface
+    interfaces:
+      enum.SpyUplinkUiKey.Key:
+        type: SpyUplinkBoundUserInterface
+  - type: SpyUplink
+  - type: StaticPrice
+    price: 0

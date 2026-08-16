@@ -1,0 +1,9 @@
+spy-uplink-title = Spy Uplink
+spy-uplink-greeting = Hello, agent. Your current bounties are listed below. Complete one, then claim your reward. Do try to stay anonymous.
+spy-uplink-claim = CLAIM
+spy-uplink-bounty-done = Status: DONE
+spy-uplink-bounty-progress = Status: {$progress}%
+spy-uplink-bounty-claimed = Status: CLAIMED
+spy-uplink-not-owner = This uplink is bound to another agent!
+spy-uplink-already-claimed = You already claimed this bounty.
+spy-uplink-not-completed = This bounty is not complete yet, agent.
