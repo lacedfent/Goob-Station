@@ -216,6 +216,21 @@ public sealed partial class AdminVerbSystem
         if (HasComp<HumanoidAppearanceComponent>(args.Target)) // only humanoids can be cloned
             args.Verbs.Add(paradox);
 
+        var spyName = Loc.GetString("admin-verb-text-make-spy");
+        Verb spy = new()
+        {
+            Text = spyName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Objects/Tools/spy_device.rsi"), "icon"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<SpyRuleComponent>(targetPlayer, "Spy");
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", spyName, Loc.GetString("admin-verb-make-spy")),
+        };
+        args.Verbs.Add(spy);
+
         // goobstation - heretics
         var hereticName = Loc.GetString("admin-verb-text-make-heretic");
         Verb heretic = new()
