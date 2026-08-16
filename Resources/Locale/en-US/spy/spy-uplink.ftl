@@ -1,9 +1,13 @@
 spy-uplink-title = Spy Uplink
-spy-uplink-greeting = Hello, agent. Your current bounties are listed below. Complete one, then claim your reward. Do try to stay anonymous.
+spy-uplink-greeting = Hello, agent. This bounty board is shared with every other spy aboard - claim what you need before they do. Green bounties are easy, yellow are medium, red are hard. Do try to stay anonymous.
 spy-uplink-claim = CLAIM
 spy-uplink-bounty-done = Status: DONE
 spy-uplink-bounty-progress = Status: {$progress}%
 spy-uplink-bounty-claimed = Status: CLAIMED
+spy-uplink-difficulty-easy = EASY
+spy-uplink-difficulty-medium = MEDIUM
+spy-uplink-difficulty-hard = HARD
 spy-uplink-not-owner = This uplink is bound to another agent!
 spy-uplink-already-claimed = You already claimed this bounty.
+spy-uplink-claimed-by-other = Another agent already claimed this bounty. The board is shared, agent.
 spy-uplink-not-completed = This bounty is not complete yet, agent.

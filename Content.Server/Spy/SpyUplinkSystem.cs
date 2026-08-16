@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.GameTicking.Rules.Components;
+using Content.Server.Objectives.Components;
 using Content.Server.Popups;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Mind;
@@ -61,9 +62,17 @@ public sealed class SpyUplinkSystem : EntitySystem
         if (!mind.Objectives.Contains(objective))
             return;
 
-        if (component.Claimed.Contains(objective))
+        var stealGroup = TryComp<StealConditionComponent>(objective, out var steal)
+            ? steal.StealGroup.Id
+            : null;
+
+        if (component.Claimed.Contains(objective)
+            || (stealGroup != null && IsStealGroupClaimed(stealGroup)))
         {
-            _popupSystem.PopupEntity(Loc.GetString("spy-uplink-already-claimed"), uid, user);
+            _popupSystem.PopupEntity(
+                Loc.GetString(stealGroup != null && !component.Claimed.Contains(objective)
+                    ? "spy-uplink-claimed-by-other"
+                    : "spy-uplink-already-claimed"), uid, user);
             UpdateUserInterface(uid, component);
             return;
         }
@@ -74,22 +83,60 @@ public sealed class SpyUplinkSystem : EntitySystem
             return;
         }
 
-        var loot = PickLoot();
+        var difficulty = TryComp<SpyBountyComponent>(objective, out var bounty)
+            ? bounty.Difficulty
+            : SpyBountyDifficulty.Medium;
+        var loot = PickLoot(difficulty);
         var spawned = Spawn(loot, Transform(uid).Coordinates);
         _handsSystem.PickupOrDrop(user, spawned, checkActionBlocker: false);
 
         component.Claimed.Add(objective);
+        if (stealGroup != null)
+            MarkStealGroupClaimed(stealGroup);
         _popupSystem.PopupEntity(Loc.GetString("spy-uplink-claimed"), uid, user);
         UpdateUserInterface(uid, component);
     }
 
-    private EntProtoId PickLoot()
+    private bool IsStealGroupClaimed(string stealGroup)
     {
         var query = EntityQueryEnumerator<SpyRuleComponent>();
         while (query.MoveNext(out _, out var rule))
         {
-            if (rule.LootPool.Count > 0)
-                return _random.Pick(rule.LootPool);
+            if (rule.ClaimedStealGroups.Contains(stealGroup))
+                return true;
+        }
+
+        return false;
+    }
+
+    private void MarkStealGroupClaimed(string stealGroup)
+    {
+        var query = EntityQueryEnumerator<SpyRuleComponent>();
+        while (query.MoveNext(out _, out var rule))
+            rule.ClaimedStealGroups.Add(stealGroup);
+    }
+
+    private EntProtoId PickLoot(SpyBountyDifficulty difficulty)
+    {
+        var query = EntityQueryEnumerator<SpyRuleComponent>();
+        while (query.MoveNext(out _, out var rule))
+        {
+            var pool = difficulty switch
+            {
+                SpyBountyDifficulty.Easy => rule.LootPoolEasy,
+                SpyBountyDifficulty.Hard => rule.LootPoolHard,
+                _ => rule.LootPoolMedium,
+            };
+
+            if (pool.Count > 0)
+                return _random.Pick(pool);
+
+            if (rule.LootPoolMedium.Count > 0)
+                return _random.Pick(rule.LootPoolMedium);
+            if (rule.LootPoolHard.Count > 0)
+                return _random.Pick(rule.LootPoolHard);
+            if (rule.LootPoolEasy.Count > 0)
+                return _random.Pick(rule.LootPoolEasy);
         }
 
         return "Telecrystal5";
@@ -121,17 +168,32 @@ public sealed class SpyUplinkSystem : EntitySystem
                     continue;
 
                 var objectiveInfo = info.Value;
+                var difficulty = TryComp<SpyBountyComponent>(objective, out var bounty)
+                    ? bounty.Difficulty
+                    : SpyBountyDifficulty.Medium;
                 bounties.Add(new SpyBountyEntry(
                     GetNetEntity(objective),
                     objectiveInfo.Title,
                     objectiveInfo.Description ?? string.Empty,
                     objectiveInfo.Progress,
                     _objectivesSystem.IsCompleted(objective, (mindId, mind)),
-                    component.Claimed.Contains(objective)));
+                    IsClaimed(objective, component),
+                    difficulty));
             }
         }
 
         _uiSystem.SetUiState(uid, SpyUplinkUiKey.Key, new SpyUplinkBuiState(bounties));
         Log.Debug($"Sent spy uplink state for {ToPrettyString(uid)} with {bounties.Count} bounties");
+    }
+
+    private bool IsClaimed(EntityUid objective, SpyUplinkComponent component)
+    {
+        if (component.Claimed.Contains(objective))
+            return true;
+
+        if (!TryComp<StealConditionComponent>(objective, out var steal))
+            return false;
+
+        return IsStealGroupClaimed(steal.StealGroup.Id);
     }
 }

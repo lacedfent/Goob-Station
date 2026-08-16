@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared.Spy.Components;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Spy;
@@ -30,8 +31,9 @@ public sealed class SpyBountyEntry
     public readonly float Progress;
     public readonly bool Completed;
     public readonly bool Claimed;
+    public readonly SpyBountyDifficulty Difficulty;
 
-    public SpyBountyEntry(NetEntity objective, string title, string description, float progress, bool completed, bool claimed)
+    public SpyBountyEntry(NetEntity objective, string title, string description, float progress, bool completed, bool claimed, SpyBountyDifficulty difficulty)
     {
         Objective = objective;
         Title = title;
@@ -39,6 +41,7 @@ public sealed class SpyBountyEntry
         Progress = progress;
         Completed = completed;
         Claimed = claimed;
+        Difficulty = difficulty;
     }
 }
 

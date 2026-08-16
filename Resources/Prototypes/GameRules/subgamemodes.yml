@@ -47,13 +47,18 @@
   id: Spy
   components:
   - type: SpyRule
-    lootPool:
-    - Telecrystal10
+    lootPoolEasy:
     - Telecrystal5
-    - PowerCellHyper
     - SpaceCash5000
     - SpaceCash10000
     - CombatKnife
+    lootPoolMedium:
+    - Telecrystal10
+    - PowerCellHyper
+    - SpaceCash10000
+    - Emag
+    lootPoolHard:
+    - Telecrystal10
     - Emag
     - StealthBox
     - ChameleonProjector
@@ -72,7 +77,7 @@
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Spy ]
-      max: 1
+      max: 3
       playerRatio: 15
       chaosScore: 100 # Goobstation
       lateJoinAdditional: true
