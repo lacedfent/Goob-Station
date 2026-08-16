@@ -9,8 +9,7 @@ SPDX-License-Identifier: MIT
     <BoxContainer Orientation="Vertical">
         <Label Name="Greeting"
                Text="{Loc 'spy-uplink-greeting'}"
-               FontColorOverride="#8a8a8a"
-               Wrap="True" />
+               FontColorOverride="#8a8a8a" />
         <ScrollContainer
             Margin="0 6 0 0"
             HorizontalExpand="True"
