@@ -39,6 +39,7 @@ public sealed class SpyUplinkSystem : EntitySystem
     private void OnBeforeOpen(EntityUid uid, SpyUplinkComponent component, BeforeActivatableUIOpenEvent args)
     {
         component.Mind = _mindSystem.TryGetMind(args.User, out var mindId, out _) ? mindId : null;
+        Log.Debug($"Spy uplink {ToPrettyString(uid)} was activated by {ToPrettyString(args.User)}, bound mind is {component.Mind}");
         UpdateUserInterface(uid, component);
     }
 
@@ -131,5 +132,6 @@ public sealed class SpyUplinkSystem : EntitySystem
         }
 
         _uiSystem.SetUiState(uid, SpyUplinkUiKey.Key, new SpyUplinkBuiState(bounties));
+        Log.Debug($"Sent spy uplink state for {ToPrettyString(uid)} with {bounties.Count} bounties");
     }
 }
