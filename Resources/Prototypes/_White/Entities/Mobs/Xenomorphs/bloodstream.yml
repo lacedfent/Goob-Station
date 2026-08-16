@@ -1,0 +1,15 @@
+- type: entity
+  id: XenomorphBloodstream
+  parent: MobBloodstream
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 300
+    bleedReductionAmount: 5
+    maxBleedAmount: 0
+    bloodlossDamage:
+      types: {}
+    bloodlossHealDamage:
+      types: {}

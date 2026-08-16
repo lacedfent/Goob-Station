@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: marking
+  id: FelinidTailFoxtail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Felinid, Tajaran] # Goobstation - Tajaran
+  sprites:
+  - sprite: _Goobstation/Mobs/Customization/Felinid/foxtail.rsi
+    state: base_fox_tail
+  - sprite: _Goobstation/Mobs/Customization/Felinid/foxtail.rsi
+    state: base_fox_tail_tip

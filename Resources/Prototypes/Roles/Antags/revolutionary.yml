@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: antag
+  id: HeadRev
+  name: roles-antag-rev-head-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-rev-head-objective
+  requirements:
+  - !type:DepartmentTimeRequirement # was  - !type:OverallPlaytimeRequirement, Goob change
+      department: Command
+      time: 10h # Goobstation
+  guides: [ Revolutionaries ]
+
+- type: antag
+  id: Rev
+  name: roles-antag-rev-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-rev-objective
+  guides: [ Revolutionaries ]
+
+- type: startingGear
+  id: HeadRevGear
+  storage:
+    back:
+    - RevolutionaryManifesto # Einstein Engines - Revolutionary Manifesto
+    - EncryptionKeySyndie # Goobstation
+    - RevsFastDrawImplanter # Goobstation

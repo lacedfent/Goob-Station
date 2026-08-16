@@ -1,0 +1,50 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: Chemist
+  name: job-name-chemist
+  description: job-description-chemist
+  playTimeTracker: JobChemist
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 5h
+  startingGear: ChemistGear
+  icon: "JobIconChemist"
+  supervisors: job-supervisors-cmo
+  guides: # goobstation
+  - Chemist
+  - Chemicals
+  goobcoins: 20 #Goob content
+  access:
+  - Medical
+  - Chemistry
+  - Maintenance
+  # Shitmed Change
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: SurgerySpeedModifier
+      speedModifier: 1.25
+
+- type: startingGear
+  id: ChemistGear
+  equipment:
+    id: ChemistryPDA
+    ears: ClothingHeadsetMedical
+    belt: ChemBagFilled
+    pocket1: HandLabeler
+    eyes: ClothingEyesGlassesChemical
+  #storage:
+    #back:
+    #- Stuff
+
+- type: chameleonOutfit
+  id: ChemistChameleonOutfit
+  job: Chemist
+  equipment:
+    head: ClothingHeadHatBeretMedic
+    mask: ClothingMaskSterile
+    neck: ClothingNeckStethoscope
+    outerClothing: ClothingOuterCoatLabChem
+    gloves: ClothingHandsGlovesLatex

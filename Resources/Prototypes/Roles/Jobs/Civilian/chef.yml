@@ -1,0 +1,57 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: Chef
+  name: job-name-chef
+  description: job-description-chef
+  playTimeTracker: JobChef
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 0.5h
+  startingGear: ChefGear
+  icon: "JobIconChef"
+  supervisors: job-supervisors-hop
+  guides: # goobstation
+  - Chef
+  - FoodRecipes
+  - CQC
+  goobcoins: 15 #Goob content
+  access:
+  - Service
+  - Maintenance
+  - Kitchen
+  extendedAccess:
+  - Hydroponics
+  - Bar
+  special: # Goobstation - Martial Arts
+  - !type:AddComponentSpecial
+    components:
+      - type: GrantCqc
+        startingStage: Hard
+        isBlocked: true
+  - !type:AddImplantSpecial # Chefs speak space italian
+    implants: [ SpaceItalianTranslatorImplant ]
+
+- type: startingGear
+  id: ChefGear
+  equipment:
+    shoes: ClothingShoesChef
+    id: ChefPDA
+    ears: ClothingHeadsetService
+    belt: ClothingBeltChefFilled
+  #storage:
+    #back:
+    #- Stuff
+
+- type: chameleonOutfit
+  id: ChefChameleonOutfit
+  job: Chef
+  equipment:
+    head: ClothingHeadHatChef
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskItalianMoustache
+    neck: ClothingNeckScarfStripedBrown
+    outerClothing: ClothingOuterJacketChef
+    gloves: ClothingHandsGlovesColorWhite
+    shoes: ClothingShoesChef

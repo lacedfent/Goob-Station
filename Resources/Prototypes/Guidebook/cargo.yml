@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: guideEntry
+  id: Cargo
+  name: guide-entry-cargo
+  text: "/ServerInfo/Guidebook/Cargo/Cargo.xml"
+  children:
+  - CargoBounties
+  - Salvage
+
+- type: guideEntry
+  id: CargoBounties
+  name: guide-entry-cargo-bounties
+  text: "/ServerInfo/Guidebook/Cargo/CargoBounties.xml"
+
+- type: guideEntry
+  id: Salvage
+  name: guide-entry-salvage
+  text: "/ServerInfo/Guidebook/Cargo/Salvage.xml"
